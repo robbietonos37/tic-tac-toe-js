@@ -13,7 +13,6 @@ const gameBoard = (function () {
 
     const resetBoard = () => {
         gameBoardSquares.forEach((square) => {
-            //square.setTextContent('');
             square.setTextContent('');
             square.textContent = '';
             gameTurn = 1;
@@ -107,13 +106,31 @@ gameBoardArray.forEach((square) => {
 })
 
 const player1 = (function () {
+    let player1Name;
+    let score = 0;
+    const setName = (name) => {
+        player1Name = name;
+    }
+    const getName = () => player1Name;
+    let increaseScore = () => score++;
+    const getScore = () => score; 
+
     const takeTurn = () => gameBoard.turnTaken();
-    return { takeTurn };
+    return { takeTurn, setName, getName, increaseScore, getScore };
 })()
 
 const player2 = (function () {
+    let player2Name;
+    let score = 0;
+    const setName = (name) => {
+        player2Name = name;
+    }
+    const getName = () => player2Name;
+    let increaseScore = () => score++;
+    const getScore = () => score; 
+
     const takeTurn = () => gameBoard.turnTaken();
-    return { takeTurn };
+    return { takeTurn, setName, getName, increaseScore, getScore};
 })()
 
 function gameSquare() {

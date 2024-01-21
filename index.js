@@ -1,5 +1,9 @@
 const gameBoardSquares = document.querySelectorAll('.square');
 const gameBoardArray = Array.from(gameBoardSquares);
+const player1Name = document.querySelector('#name-1');
+const player2Name = document.querySelector('#name-2');
+const player1Form = document.querySelector('#player1');
+const player2Form = document.querySelector('#player2');
 
 const gameBoard = (function () {
     gameGrid = [];
@@ -113,7 +117,7 @@ const player1 = (function () {
     }
     const getName = () => player1Name;
     let increaseScore = () => score++;
-    const getScore = () => score; 
+    const getScore = () => score;
 
     const takeTurn = () => gameBoard.turnTaken();
     return { takeTurn, setName, getName, increaseScore, getScore };
@@ -127,10 +131,10 @@ const player2 = (function () {
     }
     const getName = () => player2Name;
     let increaseScore = () => score++;
-    const getScore = () => score; 
+    const getScore = () => score;
 
     const takeTurn = () => gameBoard.turnTaken();
-    return { takeTurn, setName, getName, increaseScore, getScore};
+    return { takeTurn, setName, getName, increaseScore, getScore };
 })()
 
 function gameSquare() {
@@ -165,5 +169,27 @@ function gameSquare() {
 
     return { isMarked, getIsMarked, markSquare, getTextContent, setTextContent, setIsMarked };
 }
+
+player1Form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    player1.setName(player1Name.value);
+
+    console.log(player1.getName());
+
+    player1Form.classList.add('inactive');
+
+    player1Form.reset();
+})
+
+player2Form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    player2.setName(player2Name.value);
+
+    player2Form.classList.add('inactive');
+
+    player2Form.reset();
+})
 
 

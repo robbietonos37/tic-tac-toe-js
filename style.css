@@ -28,6 +28,10 @@ form {
     justify-items: center;
 }
 
+form.inactive {
+    transform: scale(0);
+}
+
 button {
     width: 80px;
 

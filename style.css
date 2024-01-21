@@ -8,10 +8,13 @@ body {
 .gameboard {
     display: grid;
     grid-template: repeat(3, minmax(300px, 1fr)) / repeat(3, minmax(300px, 1fr));
-    width: 900px;;
+    width: 900px;
 }
 
 .square {
     background-color: white;
     border: solid black 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

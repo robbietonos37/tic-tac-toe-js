@@ -14,10 +14,45 @@ const gameBoard = (function () {
     const checkForWinner = () => {
         if (gameBoardSquares[0].getTextContent() === 'X' && gameBoardSquares[1].getTextContent() === 'X' && gameBoardSquares[2].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
-        } else if(gameBoardSquares[3].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[5].getTextContent() === 'X'){
+        } else if (gameBoardSquares[3].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[5].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
-        } else if(gameBoardSquares[6].getTextContent() === 'X' && gameBoardSquares[7].getTextContent() === 'X' && gameBoardSquares[8].getTextContent() === 'X'){
-        console.log('Player 1 is winner!');
+        } else if (gameBoardSquares[6].getTextContent() === 'X' && gameBoardSquares[7].getTextContent() === 'X' && gameBoardSquares[8].getTextContent() === 'X') {
+            console.log('Player 1 is winner!');
+        } else if (gameBoardSquares[0].getTextContent() === 'X' && gameBoardSquares[3].getTextContent() === 'X' && gameBoardSquares[6].getTextContent() === 'X') {
+            console.log('Player 1 is winner!');
+        }
+        else if (gameBoardSquares[1].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[7].getTextContent() === 'X') {
+            console.log('Player 1 is winner!');
+        }
+        else if (gameBoardSquares[2].getTextContent() === 'X' && gameBoardSquares[5].getTextContent() === 'X' && gameBoardSquares[8].getTextContent() === 'X') {
+            console.log('Player 1 is winner!');
+        }
+        else if (gameBoardSquares[0].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[8].getTextContent() === 'X') {
+            console.log('Player 1 is winner!');
+        }
+        else if (gameBoardSquares[2].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[6].getTextContent() === 'X') {
+            console.log('Player 1 is winner!');
+        }
+        else if (gameBoardSquares[0].getTextContent() === 'O' && gameBoardSquares[1].getTextContent() === 'O' && gameBoardSquares[2].getTextContent() === 'O') {
+            console.log('Player 2 is winner!');
+        } else if (gameBoardSquares[3].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[5].getTextContent() === 'O') {
+            console.log('Player 2 is winner!');
+        } else if (gameBoardSquares[6].getTextContent() === 'O' && gameBoardSquares[7].getTextContent() === 'O' && gameBoardSquares[8].getTextContent() === 'O') {
+            console.log('Player 2 is winner!');
+        } else if (gameBoardSquares[0].getTextContent() === 'O' && gameBoardSquares[3].getTextContent() === 'O' && gameBoardSquares[6].getTextContent() === 'O') {
+            console.log('Player 2 is winner!');
+        }
+        else if (gameBoardSquares[1].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[7].getTextContent() === 'O') {
+            console.log('Player 2 is winner!');
+        }
+        else if (gameBoardSquares[2].getTextContent() === 'O' && gameBoardSquares[5].getTextContent() === 'O' && gameBoardSquares[8].getTextContent() === 'O') {
+            console.log('Player 2 is winner!');
+        }
+        else if (gameBoardSquares[0].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[8].getTextContent() === 'O') {
+            console.log('Player 2 is winner!');
+        }
+        else if (gameBoardSquares[2].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[6].getTextContent() === 'O') {
+            console.log('Player 2 is winner!');
         }
     }
 

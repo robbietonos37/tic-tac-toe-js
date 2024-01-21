@@ -2,8 +2,46 @@ body {
     margin: 0;
     padding: 0;
     background-color: black;
+    justify-content: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.player-forms {
+    border: solid red 1px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-content: center;
+    width: 800px;
+    max-width: 80%;
+    height: 200px;
+}
+
+form {
+    border: solid green 2px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    justify-items: center;
+}
+
+button {
+    width: 80px;
+
+}
+
+.form-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.container {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .gameboard {
@@ -12,6 +50,7 @@ body {
     display: grid;
     grid-template: repeat(3, minmax(200px, 1fr)) / repeat(3, minmax(200px, 1fr));
     width: 600px;
+    justify-self: center;
 }
 
 .square {
@@ -20,4 +59,5 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
 }

@@ -4,6 +4,10 @@ const player1Name = document.querySelector('#name-1');
 const player2Name = document.querySelector('#name-2');
 const player1Form = document.querySelector('#player1');
 const player2Form = document.querySelector('#player2');
+const player1Info = document.querySelector('#player1Info');
+const player2Info = document.querySelector('#player2Info');
+const player1NameDisplay = document.querySelector('#player1-name');
+const player2NameDisplay = document.querySelector('#player2-name');
 
 const gameBoard = (function () {
     gameGrid = [];
@@ -175,9 +179,11 @@ player1Form.addEventListener('submit', (e) => {
 
     player1.setName(player1Name.value);
 
-    console.log(player1.getName());
-
     player1Form.classList.add('inactive');
+
+    player1Info.classList.add('active');
+
+    player1NameDisplay.textContent = 'Player Name: ' + player1.getName();
 
     player1Form.reset();
 })
@@ -188,6 +194,10 @@ player2Form.addEventListener('submit', (e) => {
     player2.setName(player2Name.value);
 
     player2Form.classList.add('inactive');
+
+    player2Info.classList.add('active');
+
+    player2NameDisplay.textContent = 'Player Name: ' + player2.getName();
 
     player2Form.reset();
 })

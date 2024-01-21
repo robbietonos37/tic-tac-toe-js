@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1>Tic Tac Toe!</h1>
     <div class="player-forms" id="form1">
+        <div id="player1Info">
+            <p id="player1-name"></p>
+            <p id="player1score"></p>
+        </div>
+        <div id="player2Info">
+            <p id="player2-name"></p>
+            <p id="player2score"></p>
+        </div>
         <form action="" id="player1">
             <div class="form-content"><label for="">Player 1 Enter Your Name: </label>
-                <input id="name-1" type="text" required></div>
-                <button type="submit">Enter</button>
+                <input id="name-1" type="text" required>
+            </div>
+            <button type="submit">Enter</button>
         </form>
         <form action="" id="player2">
             <div class="form-content"><label for="">Player 2 Enter Your Name: </label>
-                <input id="name-2" type="text" required></div>
-                <button type="submit">Enter</button>
+                <input id="name-2" type="text" required>
+            </div>
+            <button type="submit">Enter</button>
         </form>
     </div>
 
@@ -35,9 +47,10 @@
         </div>
     </div>
 
-    
+
 
     <script src="index.js"></script>
-    
+
 </body>
+
 </html>

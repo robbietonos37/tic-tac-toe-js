@@ -34,12 +34,37 @@ form.inactive {
 
 button {
     width: 80px;
-
 }
 
 .form-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+#player1info {
+    transform: scale(0);
+}
+
+#player1info.active {
+    transform: scale(1);
+    color: white;
+}
+
+#player1-name {
+    color: white;
+}
+
+#player2info {
+    transform: scale(0);
+}
+
+#player2info.active {
+    transform: scale(1);
+    color: white;
+}
+
+#player2-name {
+    color: white;
 }
 
 .container {

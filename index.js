@@ -2,7 +2,7 @@ const gameBoardSquares = document.querySelectorAll('.square');
 const gameBoardArray = Array.from(gameBoardSquares);
 
 const gameBoard = (function () {
-    const gameGrid = [];
+    gameGrid = [];
     let gameTurn = 1;
     gameBoardSquares.forEach((square) => {
         square = gameSquare();
@@ -11,60 +11,94 @@ const gameBoard = (function () {
     const turnTaken = () => gameTurn++;
     const getNumTurns = () => gameTurn;
 
+    const resetBoard = () => {
+        gameBoardSquares.forEach((square) => {
+            //square.setTextContent('');
+            square.setTextContent('');
+            square.textContent = '';
+            gameTurn = 1;
+            square.setIsMarked(false);
+            console.log(square.isMarked);
+            console.log("The content for this square is " + square.getTextContent());
+        })
+
+        gameGrid.forEach((square) => {
+            square.isMarked = false;
+        })
+    }
+
     const checkForWinner = () => {
         if (gameBoardSquares[0].getTextContent() === 'X' && gameBoardSquares[1].getTextContent() === 'X' && gameBoardSquares[2].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            resetBoard();
         } else if (gameBoardSquares[3].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[5].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            resetBoard();
         } else if (gameBoardSquares[6].getTextContent() === 'X' && gameBoardSquares[7].getTextContent() === 'X' && gameBoardSquares[8].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            resetBoard();
         } else if (gameBoardSquares[0].getTextContent() === 'X' && gameBoardSquares[3].getTextContent() === 'X' && gameBoardSquares[6].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            resetBoard();
         }
         else if (gameBoardSquares[1].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[7].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            resetBoard();
         }
         else if (gameBoardSquares[2].getTextContent() === 'X' && gameBoardSquares[5].getTextContent() === 'X' && gameBoardSquares[8].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            resetBoard();
         }
         else if (gameBoardSquares[0].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[8].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            resetBoard();
         }
         else if (gameBoardSquares[2].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[6].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            resetBoard();
         }
         else if (gameBoardSquares[0].getTextContent() === 'O' && gameBoardSquares[1].getTextContent() === 'O' && gameBoardSquares[2].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            resetBoard();
         } else if (gameBoardSquares[3].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[5].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            resetBoard();
         } else if (gameBoardSquares[6].getTextContent() === 'O' && gameBoardSquares[7].getTextContent() === 'O' && gameBoardSquares[8].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            resetBoard();
         } else if (gameBoardSquares[0].getTextContent() === 'O' && gameBoardSquares[3].getTextContent() === 'O' && gameBoardSquares[6].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            resetBoard();
         }
         else if (gameBoardSquares[1].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[7].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            resetBoard();
         }
         else if (gameBoardSquares[2].getTextContent() === 'O' && gameBoardSquares[5].getTextContent() === 'O' && gameBoardSquares[8].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            resetBoard();
         }
         else if (gameBoardSquares[0].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[8].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            resetBoard();
         }
         else if (gameBoardSquares[2].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[6].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            resetBoard();
         }
     }
 
-    return { gameGrid, turnTaken, getNumTurns, checkForWinner }
+    return { gameGrid, turnTaken, getNumTurns, checkForWinner, resetBoard }
 })()
 
 gameBoardArray.forEach((square) => {
     Object.assign(square, gameSquare());
     gameBoard.gameGrid.push(square);
     square.addEventListener('click', () => {
-
+        console.log('  WAT THE FUCK IS WRONG WITH THIS');
+        console.log(square.getIsMarked());
         if (!square.getIsMarked()) {
+            console.log('inside bullshit');
             square.markSquare();
             square.textContent = square.getTextContent();
             gameBoard.checkForWinner();
@@ -87,8 +121,8 @@ function gameSquare() {
     let squareTextContent = '';
     const getIsMarked = () => isMarked;
     const markSquare = () => {
+        console.log('is tis even hitting')
         if (!isMarked) {
-            console.log('wtf');
             console.log(player1.isMyTurn);
             console.log(player2.isMyTurn);
             if (gameBoard.getNumTurns() % 2 === 1) {
@@ -104,7 +138,15 @@ function gameSquare() {
         }
     };
     const getTextContent = () => squareTextContent;
-    return { isMarked, getIsMarked, markSquare, getTextContent };
+    const setTextContent = (content) => {
+        squareTextContent = content;
+        this.textContent = content;
+    }
+    const setIsMarked = (trueOrFalse) => {
+        isMarked = trueOrFalse;
+    }
+
+    return { isMarked, getIsMarked, markSquare, getTextContent, setTextContent, setIsMarked };
 }
 
 

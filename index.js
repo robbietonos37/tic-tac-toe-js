@@ -8,6 +8,8 @@ const player1Info = document.querySelector('#player1Info');
 const player2Info = document.querySelector('#player2Info');
 const player1NameDisplay = document.querySelector('#player1-name');
 const player2NameDisplay = document.querySelector('#player2-name');
+const player1Score = document.querySelector('#player1score');
+const player2Score = document.querySelector('#player2score');
 
 const gameBoard = (function () {
     gameGrid = [];
@@ -37,60 +39,92 @@ const gameBoard = (function () {
     const checkForWinner = () => {
         if (gameBoardSquares[0].getTextContent() === 'X' && gameBoardSquares[1].getTextContent() === 'X' && gameBoardSquares[2].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            player1.increaseScore();
+            player1.updateDisplayScore();
             resetBoard();
         } else if (gameBoardSquares[3].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[5].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            player1.increaseScore();
+            player1.updateDisplayScore();
             resetBoard();
         } else if (gameBoardSquares[6].getTextContent() === 'X' && gameBoardSquares[7].getTextContent() === 'X' && gameBoardSquares[8].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            player1.increaseScore();
+            player1.updateDisplayScore();
             resetBoard();
         } else if (gameBoardSquares[0].getTextContent() === 'X' && gameBoardSquares[3].getTextContent() === 'X' && gameBoardSquares[6].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            player1.increaseScore();
+            player1.updateDisplayScore();
             resetBoard();
         }
         else if (gameBoardSquares[1].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[7].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            player1.increaseScore();
+            player1.updateDisplayScore();
             resetBoard();
         }
         else if (gameBoardSquares[2].getTextContent() === 'X' && gameBoardSquares[5].getTextContent() === 'X' && gameBoardSquares[8].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            player1.increaseScore();
+            player1.updateDisplayScore();
             resetBoard();
         }
         else if (gameBoardSquares[0].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[8].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            player1.increaseScore();
+            player1.updateDisplayScore();
             resetBoard();
         }
         else if (gameBoardSquares[2].getTextContent() === 'X' && gameBoardSquares[4].getTextContent() === 'X' && gameBoardSquares[6].getTextContent() === 'X') {
             console.log('Player 1 is winner!');
+            player1.increaseScore();
+            player1.updateDisplayScore();
             resetBoard();
         }
         else if (gameBoardSquares[0].getTextContent() === 'O' && gameBoardSquares[1].getTextContent() === 'O' && gameBoardSquares[2].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            player2.increaseScore();
+            player2.updateDisplayScore();
             resetBoard();
         } else if (gameBoardSquares[3].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[5].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            player2.increaseScore();
+            player2.updateDisplayScore();
             resetBoard();
         } else if (gameBoardSquares[6].getTextContent() === 'O' && gameBoardSquares[7].getTextContent() === 'O' && gameBoardSquares[8].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            player2.increaseScore();
+            player2.updateDisplayScore();
             resetBoard();
         } else if (gameBoardSquares[0].getTextContent() === 'O' && gameBoardSquares[3].getTextContent() === 'O' && gameBoardSquares[6].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            player2.increaseScore();
+            player2.updateDisplayScore();
             resetBoard();
         }
         else if (gameBoardSquares[1].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[7].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            player2.increaseScore();
+            player2.updateDisplayScore();
             resetBoard();
         }
         else if (gameBoardSquares[2].getTextContent() === 'O' && gameBoardSquares[5].getTextContent() === 'O' && gameBoardSquares[8].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            player2.increaseScore();
+            player2.updateDisplayScore();
             resetBoard();
         }
         else if (gameBoardSquares[0].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[8].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            player2.increaseScore();
+            player2.updateDisplayScore();
             resetBoard();
         }
         else if (gameBoardSquares[2].getTextContent() === 'O' && gameBoardSquares[4].getTextContent() === 'O' && gameBoardSquares[6].getTextContent() === 'O') {
             console.log('Player 2 is winner!');
+            player2.increaseScore();
+            player2.updateDisplayScore();
             resetBoard();
         }
     }
@@ -102,10 +136,7 @@ gameBoardArray.forEach((square) => {
     Object.assign(square, gameSquare());
     gameBoard.gameGrid.push(square);
     square.addEventListener('click', () => {
-        console.log('  WAT THE FUCK IS WRONG WITH THIS');
-        console.log(square.getIsMarked());
         if (!square.getIsMarked()) {
-            console.log('inside bullshit');
             square.markSquare();
             square.textContent = square.getTextContent();
             gameBoard.checkForWinner();
@@ -123,8 +154,12 @@ const player1 = (function () {
     let increaseScore = () => score++;
     const getScore = () => score;
 
+    const updateDisplayScore = () => {
+        player1Score.textContent = 'Rounds won: ' + getScore();
+    }
+
     const takeTurn = () => gameBoard.turnTaken();
-    return { takeTurn, setName, getName, increaseScore, getScore };
+    return { takeTurn, setName, getName, increaseScore, getScore, updateDisplayScore };
 })()
 
 const player2 = (function () {
@@ -137,8 +172,12 @@ const player2 = (function () {
     let increaseScore = () => score++;
     const getScore = () => score;
 
+    const updateDisplayScore = () => {
+        player2Score.textContent = 'Rounds won: ' + getScore();
+    }
+
     const takeTurn = () => gameBoard.turnTaken();
-    return { takeTurn, setName, getName, increaseScore, getScore };
+    return { takeTurn, setName, getName, increaseScore, getScore, updateDisplayScore };
 })()
 
 function gameSquare() {
@@ -185,6 +224,8 @@ player1Form.addEventListener('submit', (e) => {
 
     player1NameDisplay.textContent = 'Player Name: ' + player1.getName();
 
+    player1Score.textContent = 'Rounds Won: ' + player1.getScore();
+
     player1Form.reset();
 })
 
@@ -198,6 +239,8 @@ player2Form.addEventListener('submit', (e) => {
     player2Info.classList.add('active');
 
     player2NameDisplay.textContent = 'Player Name: ' + player2.getName();
+
+    player2Score.textContent = 'Rounds Won: ' + player2.getScore();
 
     player2Form.reset();
 })

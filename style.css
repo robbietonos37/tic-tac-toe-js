@@ -83,10 +83,20 @@ button {
 }
 
 .square {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 80px;
     background-color: white;
     border: solid black 2px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: black;
+}
+
+#winner {
+    transform: scale(0);
+}
+
+#winner.active {
+    transform: scale(0);
 }

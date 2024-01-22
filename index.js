@@ -11,7 +11,51 @@ const player2NameDisplay = document.querySelector('#player2-name');
 const player1Score = document.querySelector('#player1score');
 const player2Score = document.querySelector('#player2score');
 
+const player1 = (function () {
+    let player1Name = '';
+    let score = 0;
+    const setName = (name) => {
+        player1Name = name;
+    }
+    const getName = () => player1Name;
+    let increaseScore = () => score++;
+    const getScore = () => score;
+
+    const updateDisplayScore = () => {
+        player1Score.textContent = 'Rounds won: ' + getScore();
+    }
+
+    const takeTurn = () => gameBoard.turnTaken();
+    return { takeTurn, setName, getName, increaseScore, getScore, updateDisplayScore };
+})()
+
+const player2 = (function () {
+    let player2Name = '';
+    let score = 0;
+    const setName = (name) => {
+        player2Name = name;
+    }
+    const getName = () => player2Name;
+    let increaseScore = () => score++;
+    const getScore = () => score;
+
+    const updateDisplayScore = () => {
+        player2Score.textContent = 'Rounds won: ' + getScore();
+    }
+
+    const takeTurn = () => gameBoard.turnTaken();
+    return { takeTurn, setName, getName, increaseScore, getScore, updateDisplayScore };
+})()
+
 const gameBoard = (function () {
+    const clickHandler = () => {
+        alert('Please enter names before the game starts');
+    };
+
+    gameBoardArray.forEach((square) => {
+        square.addEventListener('click', clickHandler)
+    })
+    let gameStarted = player1.getName() !== '' && player2.getName() !== '';
     gameGrid = [];
     let gameTurn = 1;
     gameBoardSquares.forEach((square) => {
@@ -21,14 +65,29 @@ const gameBoard = (function () {
     const turnTaken = () => gameTurn++;
     const getNumTurns = () => gameTurn;
 
+    const startGame = () => {
+        if (player1.getName() !== '' && player2.getName() !== '') {
+            gameBoardArray.forEach((square) => {
+                Object.assign(square, gameSquare());
+                gameBoard.gameGrid.push(square);
+                square.removeEventListener('click', clickHandler);
+                square.addEventListener('click', () => {
+                    if (!square.getIsMarked()) {
+                        square.markSquare();
+                        square.textContent = square.getTextContent();
+                        gameBoard.checkForWinner();
+                    }
+                })
+            })
+        }
+    }
+
     const resetBoard = () => {
         gameBoardSquares.forEach((square) => {
             square.setTextContent('');
             square.textContent = '';
             gameTurn = 1;
             square.setIsMarked(false);
-            console.log(square.isMarked);
-            console.log("The content for this square is " + square.getTextContent());
         })
 
         gameGrid.forEach((square) => {
@@ -129,56 +188,33 @@ const gameBoard = (function () {
         }
     }
 
-    return { gameGrid, turnTaken, getNumTurns, checkForWinner, resetBoard }
+    return { gameGrid, turnTaken, getNumTurns, checkForWinner, resetBoard, startGame, gameStarted }
 })()
 
-gameBoardArray.forEach((square) => {
-    Object.assign(square, gameSquare());
-    gameBoard.gameGrid.push(square);
-    square.addEventListener('click', () => {
-        if (!square.getIsMarked()) {
-            square.markSquare();
-            square.textContent = square.getTextContent();
-            gameBoard.checkForWinner();
-        }
-    })
-})
+gameBoard.startGame();
 
-const player1 = (function () {
-    let player1Name;
-    let score = 0;
-    const setName = (name) => {
-        player1Name = name;
-    }
-    const getName = () => player1Name;
-    let increaseScore = () => score++;
-    const getScore = () => score;
 
-    const updateDisplayScore = () => {
-        player1Score.textContent = 'Rounds won: ' + getScore();
-    }
-
-    const takeTurn = () => gameBoard.turnTaken();
-    return { takeTurn, setName, getName, increaseScore, getScore, updateDisplayScore };
-})()
-
-const player2 = (function () {
-    let player2Name;
-    let score = 0;
-    const setName = (name) => {
-        player2Name = name;
-    }
-    const getName = () => player2Name;
-    let increaseScore = () => score++;
-    const getScore = () => score;
-
-    const updateDisplayScore = () => {
-        player2Score.textContent = 'Rounds won: ' + getScore();
-    }
-
-    const takeTurn = () => gameBoard.turnTaken();
-    return { takeTurn, setName, getName, increaseScore, getScore, updateDisplayScore };
-})()
+// if (gameBoard.startGame()) {
+//     console.log(gameBoard.startGame());
+//     gameBoardArray.forEach((square) => {
+//         Object.assign(square, gameSquare());
+//         gameBoard.gameGrid.push(square);
+//         square.addEventListener('click', () => {
+//             if (!square.getIsMarked()) {
+//                 square.markSquare();
+//                 square.textContent = square.getTextContent();
+//                 gameBoard.checkForWinner();
+//             }
+//         })
+//     })
+// }
+// else {
+//     gameBoardArray.forEach((square) => {
+//         square.addEventListener('click', () => {
+//             alert('Please enter names before the game starts')
+//         })
+//     })
+// }
 
 function gameSquare() {
     let isMarked = false;
@@ -227,6 +263,9 @@ player1Form.addEventListener('submit', (e) => {
     player1Score.textContent = 'Rounds Won: ' + player1.getScore();
 
     player1Form.reset();
+
+
+    gameBoard.startGame();
 })
 
 player2Form.addEventListener('submit', (e) => {
@@ -243,6 +282,8 @@ player2Form.addEventListener('submit', (e) => {
     player2Score.textContent = 'Rounds Won: ' + player2.getScore();
 
     player2Form.reset();
+
+    gameBoard.startGame();
 })
 
 
